@@ -27,8 +27,14 @@ class App extends Component {
     return randomNumber;
   }
 
-  componentDidUpdate() {
-    console.log("Component did update start");
+  componentWillMount() {
+    console.log("Component will mount");
+    let array=this.state.chartData.datasets.map(item => item.data.map(i => this.randomArray(50,100)));
+    console.log(array);
+  }
+
+  NewData = (datasets) => {
+    let newArray=[];
   }
 
   clickHandle = () => {
@@ -50,9 +56,9 @@ class App extends Component {
   }
 
   render() {
-    console.log("Render")
     return (
       <div className="App">
+        {console.log("render App component")}
         <div className="chart">
           <Chart chartData={this.state.chartData} />
         </div>

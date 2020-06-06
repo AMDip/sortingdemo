@@ -17,9 +17,9 @@ class Chart extends Component {
   }
 
   render() {
-      console.log("Render")
     return (
       <div>
+      {console.log("render Chart component")}
         <HorizontalBar
           data={this.state.chartData}
           options={{
