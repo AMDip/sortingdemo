@@ -5,54 +5,48 @@ import Chart from "./components/Chart";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.counter= 0;
+    this.counter=0;
     this.state = {
-      chartData: {
-        labels: ["bar1", "bar2", "bar3", "bar4", "bar5"],
-        datasets: [
-          {
-            label: "Dataset Label Text",
-            data: [50,300,100,600,555],
-            backgroundColor: "rgba(121,7,242,75)"
-          }
-        ]
-      }
+      chartData: this.GenerateChartData(10)
     }
   }
 
+  GenerateChartData(numberOfBars){
+    let chartdata= {
+      labels: [],
+      datasets: []
+    };
+    let dataAux=[];
+    for (let i = 0; i < numberOfBars; i++) {
+      chartdata.labels.push("Bar Label " + (+i + +1));
+      dataAux.push(this.randomArray(50,100))
+    };
+    chartdata.datasets.push({
+        label: "Dataset Label",
+        backgroundColor: "rgba(120,52,237,0.9)",
+        data: dataAux
+    });
+    console.log(chartdata);
+    return chartdata;
+  }
+  random_rgba(){
+    let o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+  }
 
-  randomArray = (min, max) => {
+  randomArray(min, max){
     let randomNumber = Math.floor(Math.random() * max-min) + min;
-    console.log(randomNumber + "min:" + min + "max:" + max)
     return randomNumber;
   }
 
-  componentWillMount() {
-    console.log("Component will mount");
-    let array=this.state.chartData.datasets.map(item => item.data.map(i => this.randomArray(50,100)));
-    console.log(array);
-  }
-
-  NewData = (datasets) => {
-    let newArray=[];
+  componentDidMount() {
+    console.log("Component did mount");
   }
 
   clickHandle = () => {
-    this.setState({
-      chartData: {
-        labels: ["1", "2", "3", "4", "5"],
-        datasets: [
-          {
-            label: "Dataset Label Text",
-            //data: [this.randomArray(),this.randomArray(),this.randomArray(),this.randomArray(),this.randomArray() ],
-            data: [this.randomArray(500,1000)],
-            backgroundColor: "rgba(121,7,242,75)"
-          }
-        ]
-      },
-    });
+    this.setState({chartData:  this.GenerateChartData(10)});;
     this.counter = this.counter + 1
-    console.log("Button Clicked + charData: " + this.state.chartData.datasets.data)
+    console.log("Button Clicked")
   }
 
   render() {
