@@ -2,20 +2,36 @@ import React, { Component } from "react";
 import { HorizontalBar } from "react-chartjs-2";
 import _ from 'lodash';
 
-class Chart extends Component {
+class MyChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: [{}],
-    };
+      chartData: {
+      },
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Component did update");
-    if(this.props.chartData.labels.length !== this.state.chartData.labels.length ||
-      !_.isEqual(this.props.chartData.datasets, this.state.chartData.datasets)) {
-      this.setState( (state, props) => ({chartData: this.props.chartData }));
+    console.log("**CHART Component did update **");
+    console.log("is sorted: "+ this.isSorted(this.props.chartData.datasets[0].data));
+    console.log("is equal: ");
+    console.log(_.isEqual(this.props.chartData.datasets, prevProps.chartData.datasets))
+    console.log("Props chartdata: ");
+    console.log(this.props.chartData);
+    if(!_.isEqual(this.props.chartData, prevProps.chartData)){
+        this.setState({chartData: this.props.chartData });
+     }
+  }
+
+  isSorted = (array) => {
+    let isSorted=true;
+    for(let i=0; i<array.length; i++){
+      if(array[i] > array[i+1]){
+        isSorted=false;
+        break;
+      }
     }
+    return isSorted;
   }
 
   render() {
@@ -62,4 +78,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default MyChart;
