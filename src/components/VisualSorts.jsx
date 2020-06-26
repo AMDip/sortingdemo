@@ -1,7 +1,8 @@
 import React from "react";
 import "./VisualSorts.css";
+import { MergeSortAlgorithm } from "./Algorithms";
 
-const MAX_BAR_SIZE = 250;
+const MAX_BAR_SIZE = 500;
 const NUMBER_OF_BARS = 50;
 
 // Speed of the animations.
@@ -24,6 +25,9 @@ export default class VisualSorts extends React.Component {
   componentDidMount() {
     this.createBars();
     testSorting();
+    //testing merge sort algorithm
+    // let test = [4, 6, 2, 3, 9, 5, 7, 8, 0, 1]
+    // MergeSortAlgorithm(test);
   }
 
   createBars() {
@@ -34,7 +38,7 @@ export default class VisualSorts extends React.Component {
     this.setState({ bars: bars });
   }
 
-  sortBars() {
+  bubbleSort() {
     const array = this.state.bars.slice();
     let i=0;
     let j=0;
@@ -92,20 +96,23 @@ export default class VisualSorts extends React.Component {
 
   render() {
     return (
-      <div className="container-div">
-        {this.state.bars.map((item, index) => (
-          <div
-            className="bar-1"
-            key={index}
-            style={{
-              backgroundColor: PRIMARY_COLOR,
-              height: `${item}px`
+      <div>
+        <div className="bar-container-div">
+          {this.state.bars.map((item, index) => (
+            <div
+              className="bar-1"
+              key={index}
+              style={{
+                backgroundColor: PRIMARY_COLOR,
+                height: `${item}px`
             }}></div>
-        ))}
-        <div>
-          <button onClick={() => this.createBars()}>reset bars</button>
-          <button onClick={() => this.sortBars()}>sort bars</button>
+          ))}
         </div>
+          <div>
+            <button onClick={() => this.createBars()}>reset bars</button>
+            <button onClick={() => this.bubbleSort()}>sort bars</button>
+            <button onClick={() => this.mergeSort()}>sort bars</button>
+          </div>
       </div>
     );
   }
@@ -125,19 +132,20 @@ function testSorting(){
     const sortedArrayWithMethod = array.slice();
 
     //bubble sorting algorithm
-    for (let i=0; i < array.length-1; i++) {
-      for (let j = 0; j < array.length-1; j++) {
-        if (array[j] > array[j+1]) {
-          aux = array[j];
-          array[j] = array[j+1];
-          array[j+1] = aux;
-        }
-      }
-    }
+    // for (let i=0; i < array.length-1; i++) {
+    //   for (let j = 0; j < array.length-1; j++) {
+    //     if (array[j] > array[j+1]) {
+    //       aux = array[j];
+    //       array[j] = array[j+1];
+    //       array[j+1] = aux;
+    //     }
+    //   }
+    // }
+    let testArray = MergeSortAlgorithm(array);
     //sorts the array using js sorting method
     sortedArrayWithMethod.sort( (a,b)=> a-b )
     //comparing the two arrays to verify the the created array is sorted correctly
-    console.log(arraysAreEqual(sortedArrayWithMethod, array));
+    console.log(arraysAreEqual(sortedArrayWithMethod, testArray));
   }
 }
 
