@@ -1,23 +1,115 @@
-.bar-1{
-  width: 3.8%;
-  margin: 5% 1px;
-  display: inline-block;
-  /*position: relative;
-  /* top: 10%;
-  bottom: 10%; */
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.bar-1:first-child:nth-last-child(n - 80) ~ .bar-1{
-  width: 0.8%;
+li, a {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 500;
+  color: aliceblue;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px, 20%;
+  background-color: white ;
+}
+
+/*resets header*/
+header::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.navbar_sorts{
+  list-style: none;
+  float: right;
+}
+
+.navbar_sorts ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar_sorts li{
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 25px;
+  position: relative;
+}
+
+.navbar_sorts a{
+  color: rgb(109, 105, 109);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.navbar_sorts a:hover{
+  color: rgb(135, 20, 211);
+}
+
+/* top line animation on hover*/
+.navbar_sorts a::before{
+  content: '';
+  display: block;
+  height: 5px;
+  top: 0;
+  width: 0%;
+  background-color: rgb(135, 20, 211);
+  position: absolute;
+  transition: all ease-in-out 250ms;
+}
+.navbar_sorts a:hover::before{
+  width: 100%;
+}
+
+
+/* .navbar_sorts li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.navbar_sorts li a {
+  transition: all 0.3s ease 0s;
+}
+.navbar_sorts li a:hover {
+  color: violet;
+} */
+
+.sort-logo{ 
+  /* float: left; */
+  width: 40px; 
+  height: 40px; 
+  padding: 2px 0;
+  object-fit: contain; 
+}
+
+.bar-1{
+  width:  0.8%;
+  margin: 5% 1px;
+  display: inline-block;
 }
 
 .bar-container-div{
+  /* margin-right: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px; */
+  /* margin: 0 40px; */
+  width: 100%;
   text-align: center;
   background-color: grey;
-  overflow: auto;
+  /* overflow: auto; */
   float: left; 
-  position: relative;
+  /* position: relative; */
   height: 40rem;
-  min-width: 100%;
-  white-space: nowrap;
+  /* min-width: 100%;  */
+  /* white-space: nowrap; */
   }
+
